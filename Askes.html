@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Askes Prislista</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --bg:#0b0a08;
+    --surface:#131210;
+    --surface-2:#1a1814;
+    --line:#2b2621;
+    --fg:#f2ede1;
+    --fg-dim:#a89f8e;
+    --fg-faint:#6e6558;
+    --accent:#c9a24b;
+    --accent-dim:#8a703a;
+    color-scheme:dark;
+    --font-display:'Cinzel','Georgia',serif;
+    --font-body:'Work Sans','Segoe UI',sans-serif;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--font-body);
+    font-size:15px;
+    line-height:1.6;
+    padding-inline:20px;
+    padding-block:56px;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{text-wrap:balance; font-family:var(--font-display); font-weight:600; margin:0}
+  p{margin:0}
+
+  .page{max-width:760px; margin-inline:auto; display:flex; flex-direction:column; gap:52px}
+
+  .header{display:flex; flex-direction:column; align-items:center; gap:18px; text-align:center}
+  .seal{width:84px; height:84px; flex:none}
+  .seal path, .seal line, .seal circle{vector-effect:non-scaling-stroke}
+  .brand{display:flex; flex-direction:column; gap:6px}
+  .brand .word{
+    font-family:var(--font-display);
+    font-size:clamp(28px,5vw,38px);
+    letter-spacing:0.14em;
+    color:var(--fg);
+  }
+  .brand .tagline{
+    font-size:12px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+  .intro{max-width:46ch; color:var(--fg-dim); font-size:14.5px}
+
+  .divider{
+    width:100%; height:1px; background:
+      linear-gradient(90deg, transparent, var(--line) 15%, var(--line) 85%, transparent);
+    position:relative;
+  }
+  .divider::before{
+    content:"";
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    width:7px; height:7px; background:var(--accent); border-radius:50%;
+  }
+
+  .tier{display:flex; flex-direction:column; gap:18px}
+  .tier-head{display:flex; flex-direction:column; gap:6px}
+  .tier-eyebrow{font-size:11.5px; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent-dim)}
+  .tier-title{font-family:var(--font-display); font-size:22px; letter-spacing:0.02em}
+  .tier-desc{color:var(--fg-dim); font-size:13.5px; max-width:52ch}
+
+  .plans{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  @media (max-width:560px){ .plans{grid-template-columns:1fr} }
+
+  .plan{
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:22px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    position:relative;
+    min-width:0;
+    text-decoration:none;
+    color:inherit;
+    cursor:pointer;
+    transition:border-color .15s ease, background .15s ease, transform .15s ease;
+  }
+  .plan:hover, .plan:focus-visible{
+    border-color:var(--accent);
+    background:var(--surface-2);
+    transform:translateY(-2px);
+  }
+  .plan:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+  .plan.featured{
+    border-color:var(--accent-dim);
+    background:var(--surface-2);
+  }
+  .plan-cta{
+    margin-top:auto;
+    font-size:11.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .plan-cta::after{content:"→"; transition:transform .15s ease}
+  .plan:hover .plan-cta::after{transform:translateX(3px)}
+  .plan-ribbon{
+    position:absolute; top:0; right:0;
+    font-size:10px; letter-spacing:0.14em; text-transform:uppercase;
+    color:#0b0a08; background:var(--accent);
+    padding:4px 10px;
+  }
+  .plan-length{font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--fg-dim)}
+  .plan-price{display:flex; align-items:baseline; gap:6px; font-variant-numeric:tabular-nums}
+  .plan-price .amount{font-family:var(--font-display); font-size:30px; color:var(--fg)}
+  .plan-price .unit{font-size:12.5px; color:var(--fg-dim)}
+  .plan-total{font-size:12px; color:var(--fg-faint); font-variant-numeric:tabular-nums}
+
+  ul.features{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px}
+  ul.features li{display:flex; gap:9px; font-size:13.5px; color:var(--fg)}
+  ul.features li::before{
+    content:"";
+    width:5px; height:5px; margin-top:7px; flex:none;
+    background:var(--accent);
+    transform:rotate(45deg);
+  }
+
+  .footer{
+    display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center;
+    padding-top:8px;
+  }
+  .footer .handle{font-family:var(--font-display); letter-spacing:0.12em; color:var(--accent); font-size:14px}
+  .footer .note{color:var(--fg-faint); font-size:12.5px; max-width:44ch}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="header">
+    <svg class="seal" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="110" cy="110" r="98" fill="none" stroke="#f2ede1" stroke-width="1.4"/>
+      <circle cx="110" cy="110" r="80" fill="none" stroke="#f2ede1" stroke-width="1"/>
+      <g stroke="#f2ede1" stroke-width="2" fill="none" stroke-linecap="square">
+        <g id="t"><path d="M110,22 L110,32"/></g>
+        <use href="#t" transform="rotate(15 110 110)"/><use href="#t" transform="rotate(30 110 110)"/><use href="#t" transform="rotate(45 110 110)"/>
+        <use href="#t" transform="rotate(60 110 110)"/><use href="#t" transform="rotate(75 110 110)"/><use href="#t" transform="rotate(90 110 110)"/>
+        <use href="#t" transform="rotate(105 110 110)"/><use href="#t" transform="rotate(120 110 110)"/><use href="#t" transform="rotate(135 110 110)"/>
+        <use href="#t" transform="rotate(150 110 110)"/><use href="#t" transform="rotate(165 110 110)"/><use href="#t" transform="rotate(180 110 110)"/>
+        <use href="#t" transform="rotate(195 110 110)"/><use href="#t" transform="rotate(210 110 110)"/><use href="#t" transform="rotate(225 110 110)"/>
+        <use href="#t" transform="rotate(240 110 110)"/><use href="#t" transform="rotate(255 110 110)"/><use href="#t" transform="rotate(270 110 110)"/>
+        <use href="#t" transform="rotate(285 110 110)"/><use href="#t" transform="rotate(300 110 110)"/><use href="#t" transform="rotate(315 110 110)"/>
+        <use href="#t" transform="rotate(330 110 110)"/><use href="#t" transform="rotate(345 110 110)"/><use href="#t" transform="rotate(0 110 110)"/>
+      </g>
+      <path d="M 84,136 L 110,70 L 136,136" fill="none" stroke="#f2ede1" stroke-width="6" stroke-linejoin="miter" stroke-linecap="square"/>
+      <line x1="98" y1="110" x2="122" y2="110" stroke="#c9a24b" stroke-width="5"/>
+      <circle cx="110" cy="70" r="4" fill="#c9a24b"/>
+    </svg>
+
+    <div class="brand">
+      <div class="word">ASKES</div>
+      <div class="tagline">Online PT &amp; Coaching</div>
+    </div>
+
+    <p class="intro">Individuellt anpassad träning, byggd på disciplin och struktur snarare än snabba lösningar. Välj bindningstid och om kost ska ingå.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="tier">
+    <div class="tier-head">
+      <span class="tier-eyebrow">Paket 1</span>
+      <h2 class="tier-title">Träningsprogram</h2>
+      <p class="tier-desc">Ett individuellt träningsprogram anpassat efter dina mål, din erfarenhet och din utrustning. Du kör på egen hand med stöd via chatt.</p>
+    </div>
+
+    <div class="plans">
+      <a class="plan" href="https://form.typeform.com/to/vEJmzVhO#program-3man">
+        <span class="plan-length">3 månader</span>
+        <div class="plan-price"><span class="amount">999</span><span class="unit">kr / mån</span></div>
+        <span class="plan-total">Totalt 2 997 kr</span>
+        <span class="plan-cta">Ansök</span>
+      </a>
+      <a class="plan featured" href="https://form.typeform.com/to/vEJmzVhO#program-6man">
+        <span class="plan-ribbon">Mest valt</span>
+        <span class="plan-length">6 månader</span>
+        <div class="plan-price"><span class="amount">899</span><span class="unit">kr / mån</span></div>
+        <span class="plan-total">Totalt 5 394 kr</span>
+        <span class="plan-cta">Ansök</span>
+      </a>
+      <a class="plan" href="https://form.typeform.com/to/vEJmzVhO#program-12man">
+        <span class="plan-length">12 månader</span>
+        <div class="plan-price"><span class="amount">799</span><span class="unit">kr / mån</span></div>
+        <span class="plan-total">Totalt 9 588 kr</span>
+        <span class="plan-cta">Ansök</span>
+      </a>
+    </div>
+
+    <ul class="features">
+      <li>Individuellt träningsprogram efter mål och tillgänglig utrustning</li>
+      <li>Programmet uppdateras var 6–8:e vecka</li>
+      <li>Videoinstruktioner till varje övning</li>
+      <li>Löpande frågor via chatt</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="tier">
+    <div class="tier-head">
+      <span class="tier-eyebrow">Paket 2</span>
+      <h2 class="tier-title">Program + Kost</h2>
+      <p class="tier-desc">Allt i Träningsprogram, plus ett individuellt kostschema och tätare uppföljning — för dig som vill ha hela bilden täckt.</p>
+    </div>
+
+    <div class="plans">
+      <a class="plan" href="https://form.typeform.com/to/vEJmzVhO#kost-3man">
+        <span class="plan-length">3 månader</span>
+        <div class="plan-price"><span class="amount">1 499</span><span class="unit">kr / mån</span></div>
+        <span class="plan-total">Totalt 4 497 kr</span>
+        <span class="plan-cta">Ansök</span>
+      </a>
+      <a class="plan featured" href="https://form.typeform.com/to/vEJmzVhO#kost-6man">
+        <span class="plan-ribbon">Mest valt</span>
+        <span class="plan-length">6 månader</span>
+        <div class="plan-price"><span class="amount">1 349</span><span class="unit">kr / mån</span></div>
+        <span class="plan-total">Totalt 8 094 kr</span>
+        <span class="plan-cta">Ansök</span>
+      </a>
+      <a class="plan" href="https://form.typeform.com/to/vEJmzVhO#kost-12man">
+        <span class="plan-length">12 månader</span>
+        <div class="plan-price"><span class="amount">1 199</span><span class="unit">kr / mån</span></div>
+        <span class="plan-total">Totalt 14 388 kr</span>
+        <span class="plan-cta">Ansök</span>
+      </a>
+    </div>
+
+    <ul class="features">
+      <li>Allt som ingår i Träningsprogram</li>
+      <li>Individuellt kostschema anpassat efter dina mål</li>
+      <li>Receptförslag</li>
+      <li>Veckovis avstämning</li>
+      <li>Prioriterad svarstid på frågor</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="footer">
+    <span class="handle">Coach Erik</span>
+    <p class="note">Grundare av Askes. Hör av dig för att komma igång eller boka ett kort startsamtal.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
